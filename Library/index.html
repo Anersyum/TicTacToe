@@ -2,9 +2,22 @@
 <html>
     <head>
         <title>My Library</title>
+        <link href="./css/style.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read?</th>
+            </thead>
+            <tbody id="books"></tbody>
+        </table>
+        <section id="inputSection">
+            <input type="button" value="Add new book" class="button" />
+        </section>
+        
         <script src="./js/book.js"></script>
     </body>
 </html>

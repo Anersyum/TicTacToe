@@ -1,0 +1,29 @@
+table {
+    border-collapse: collapse;
+    width: 70%;
+}
+table, th, td {
+    border: 2px solid black;
+    text-align: center;
+}
+
+th, td {
+    height: 30px;
+}
+
+.button {
+    background-color: silver;
+    border: none;
+    width: 100px;
+    height: 30px;
+    margin: 5px 0px 0px 28%;
+    box-sizing: border-box;    
+}
+
+.button:hover {
+    background-color: gray;
+}
+
+.button:active {
+    background-color: lightblue;
+}
