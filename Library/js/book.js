@@ -6,12 +6,13 @@ let id = 0;
 document.querySelector(".addButton").addEventListener("click", createBook);
 document.querySelector(".removeButton").addEventListener("click", removeBook);
 
-function Book(title, author, numberOfPages, readBook) {
+function Book(title, author, numberOfPages) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.numberOfPages = numberOfPages;
-    this.readBook = readBook;
+    this.read = document.createElement("input");
+    this.read.type = "checkbox";
     id++;
 }
 
@@ -56,7 +57,7 @@ function render() {
 
         Object.entries(book).forEach((key) => {
             let cell = document.createElement("td");
-            let cellText = document.createTextNode(key[1]);
+            let cellText = (key[0] === "read" ? key[1] : document.createTextNode(key[1]));
 
             cell.appendChild(cellText);
             row.appendChild(cell);
