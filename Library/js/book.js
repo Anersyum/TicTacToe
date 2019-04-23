@@ -1,13 +1,18 @@
 let myLibrary = [];
 let docTable = document.querySelector("#books");
+let index = 0;
+let id = 0;
 
-document.querySelector(".button").addEventListener("click", createBook);
+document.querySelector(".addButton").addEventListener("click", createBook);
+document.querySelector(".removeButton").addEventListener("click", removeBook);
 
 function Book(title, author, numberOfPages, readBook) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.numberOfPages = numberOfPages;
     this.readBook = readBook;
+    id++;
 }
 
 Book.prototype.info = function() {
@@ -21,21 +26,26 @@ function addBookToLibrary(title, author, numberOfPages, readBook) {
     const librarySize = myLibrary.length;
 
     myLibrary[librarySize] = new Book(title, author, numberOfPages, readBook);
+    index++;
 }
 
 function render() {
-    myLibrary.forEach(book => {
         let row = document.createElement("tr");
 
-        Object.values(book).forEach(value => {
+        Object.entries(myLibrary[index - 1]).forEach((key) => {
             let cell = document.createElement("td");
-            let cellText = document.createTextNode(value);
+            let cellText = document.createTextNode(key[1]);
 
             cell.appendChild(cellText);
             row.appendChild(cell);
         });
         docTable.appendChild(row);
-    });
+}
+
+function removeBook() {
+    let rowID = prompt("Enter the row you want to delete", "Row");
+
+    docTable.deleteRow(rowID - 1);
 }
 
 function createBook() {

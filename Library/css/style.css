@@ -11,19 +11,32 @@ th, td {
     height: 30px;
 }
 
-.button {
+.addButton, .removeButton {
     background-color: silver;
     border: none;
     width: 100px;
     height: 30px;
-    margin: 5px 0px 0px 28%;
+    margin: 5px 0px 0px 25%;
     box-sizing: border-box;    
 }
 
-.button:hover {
+.removeButton{
+    margin-left: 0%;
+}
+
+
+button:hover {
     background-color: gray;
 }
 
-.button:active {
+button:active {
     background-color: lightblue;
+}
+
+.removeButton {
+    background-color: silver;
+    border: none;
+    width: 100px;
+    height: 30px;
+    box-sizing: border-box;    
 }
