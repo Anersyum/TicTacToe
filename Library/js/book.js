@@ -1,7 +1,7 @@
-let myLibrary = [];
 let docTable = document.querySelector("#books");
 let index = 0;
-let id = 0;
+let myLibrary = localStorage.getItem("myLibrary") ? JSON.parse(localStorage.getItem("myLibrary")) : [];
+let id = (myLibrary.length === 0) ? 0 : myLibrary[myLibrary.length - 1].id + 1;
 
 document.querySelector(".addButton").addEventListener("click", createBook);
 document.querySelector(".removeButton").addEventListener("click", removeBook);
@@ -11,16 +11,8 @@ function Book(title, author, numberOfPages) {
     this.title = title;
     this.author = author;
     this.numberOfPages = numberOfPages;
-    this.read = document.createElement("input");
-    this.read.type = "checkbox";
+    this.read = false;
     id++;
-}
-
-Book.prototype.info = function() {
-    const read = this.readBook ? "read" : "not read yet";
-    const info = `${this.title} by ${this.author}, ${this.numberOfPages} pages, ${read}`
-
-    return info;
 }
 
 function removeArrayElement(array, value) {
@@ -46,7 +38,12 @@ function addBookToLibrary(title, author, numberOfPages, readBook) {
     const librarySize = myLibrary.length;
 
     myLibrary[librarySize] = new Book(title, author, numberOfPages, readBook);
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
     index++;
+}
+
+function changeReadState(obj) {
+    obj.read = (obj.read == "false") ? "true" : "false";
 }
 
 function render() {
@@ -57,9 +54,16 @@ function render() {
 
         Object.entries(book).forEach((key) => {
             let cell = document.createElement("td");
-            let cellText = (key[0] === "read" ? key[1] : document.createTextNode(key[1]));
 
-            cell.appendChild(cellText);
+            if (key[0] === "read") {
+                let chkBox = document.createElement("input");
+                chkBox.type = "checkbox";
+                chkBox.className = "isRead";
+                cell.appendChild(chkBox);
+            }
+            else
+                cell.innerHTML = key[1];
+
             row.appendChild(cell);
         });
         docTable.appendChild(row);
@@ -73,6 +77,7 @@ function removeBook() {
     myLibrary = removeArrayElement(myLibrary, rowID);
 
     reassignBookId(rowID);
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
     render();
 }
 
@@ -84,3 +89,5 @@ function createBook() {
     addBookToLibrary(title, author, numberOfPages, false);
     render();
 }
+
+render();
