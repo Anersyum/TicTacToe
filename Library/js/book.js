@@ -3,6 +3,11 @@ let index = 0;
 let myLibrary = localStorage.getItem("myLibrary") ? JSON.parse(localStorage.getItem("myLibrary")) : [];
 let id = (myLibrary.length === 0) ? 0 : myLibrary.length;
 
+window.onbeforeunload = () => {
+    changeState();
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
 document.querySelector(".addButton").addEventListener("click", createBook);
 document.querySelector(".removeButton").addEventListener("click", removeBook);
 
@@ -39,7 +44,6 @@ function addBookToLibrary(title, author, numberOfPages, readBook) {
     const librarySize = myLibrary.length;
 
     myLibrary[librarySize] = new Book(title, author, numberOfPages, readBook);
-    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
     index++;
 }
 
@@ -75,7 +79,6 @@ function removeBook() {
     myLibrary = removeArrayElement(myLibrary, rowID);
 
     reassignBookId(rowID);
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
     render();
 }
 
@@ -100,8 +103,6 @@ function changeState() {
                 myLibrary[i].read = "false";
         }
     }
-    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 render();
-setInterval(changeState, 500);
