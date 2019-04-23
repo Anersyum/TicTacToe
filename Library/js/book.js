@@ -64,7 +64,7 @@ function render() {
                 cell.appendChild(chkBox);
             }
             else
-                cell.innerHTML = key[1];
+                cell.textContent = key[1];
 
             row.appendChild(cell);
         });
