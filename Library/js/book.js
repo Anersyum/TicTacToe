@@ -22,6 +22,25 @@ Book.prototype.info = function() {
     return info;
 }
 
+function removeArrayElement(array, value) {
+    return array.filter((ele) => {return ele.id != value});
+}
+
+function clearTable() {
+    const rowLength = docTable.rows.length;
+
+    for (let i = 0; i < rowLength; i++) {
+        docTable.deleteRow(0);   
+    }
+}
+
+function reassignBookId(rowID) {
+    for (let i = rowID; i < myLibrary.length; i++) {
+        if (myLibrary[i].id === 0) continue;
+        myLibrary[i].id--;
+    }
+}
+
 function addBookToLibrary(title, author, numberOfPages, readBook) {
     const librarySize = myLibrary.length;
 
@@ -30,9 +49,12 @@ function addBookToLibrary(title, author, numberOfPages, readBook) {
 }
 
 function render() {
+    clearTable();
+
+    myLibrary.forEach(book => {
         let row = document.createElement("tr");
 
-        Object.entries(myLibrary[index - 1]).forEach((key) => {
+        Object.entries(book).forEach((key) => {
             let cell = document.createElement("td");
             let cellText = document.createTextNode(key[1]);
 
@@ -40,12 +62,17 @@ function render() {
             row.appendChild(cell);
         });
         docTable.appendChild(row);
+    });
 }
 
 function removeBook() {
-    let rowID = prompt("Enter the row you want to delete", "Row");
+    let rowID = prompt("Enter the Id of the book you want to delete", "Book ID");
 
-    docTable.deleteRow(rowID - 1);
+    docTable.deleteRow(rowID);
+    myLibrary = removeArrayElement(myLibrary, rowID);
+
+    reassignBookId(rowID);
+    render();
 }
 
 function createBook() {

@@ -25,11 +25,11 @@ th, td {
 }
 
 
-button:hover {
+.addButton:hover {
     background-color: gray;
 }
 
-button:active {
+.addButton:active {
     background-color: lightblue;
 }
 
@@ -39,4 +39,12 @@ button:active {
     width: 100px;
     height: 30px;
     box-sizing: border-box;    
+}
+
+.removeButton:hover {
+    background-color: gray;
+}
+
+.removeButton:active {
+    background-color: lightblue;
 }
