@@ -1,7 +1,7 @@
 let docTable = document.querySelector("#books");
 let index = 0;
 let myLibrary = localStorage.getItem("myLibrary") ? JSON.parse(localStorage.getItem("myLibrary")) : [];
-let id = (myLibrary.length === 0) ? 0 : myLibrary[myLibrary.length - 1].id + 1;
+let id = (myLibrary.length === 0) ? 0 : myLibrary.length;
 
 document.querySelector(".addButton").addEventListener("click", createBook);
 document.querySelector(".removeButton").addEventListener("click", removeBook);
@@ -32,6 +32,7 @@ function reassignBookId(rowID) {
         if (myLibrary[i].id === 0) continue;
         myLibrary[i].id--;
     }
+    id--;
 }
 
 function addBookToLibrary(title, author, numberOfPages, readBook) {
@@ -40,10 +41,6 @@ function addBookToLibrary(title, author, numberOfPages, readBook) {
     myLibrary[librarySize] = new Book(title, author, numberOfPages, readBook);
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
     index++;
-}
-
-function changeReadState(obj) {
-    obj.read = (obj.read == "false") ? "true" : "false";
 }
 
 function render() {
@@ -59,6 +56,7 @@ function render() {
                 let chkBox = document.createElement("input");
                 chkBox.type = "checkbox";
                 chkBox.className = "isRead";
+                chkBox.checked = (key[1] == "true") ? true : false;
                 cell.appendChild(chkBox);
             }
             else
@@ -90,4 +88,20 @@ function createBook() {
     render();
 }
 
+function changeState() {
+    let elementList;
+
+    if (myLibrary.length != 0){
+        elementList = document.querySelectorAll(".isRead"); 
+        for (let i = 0; i < elementList.length; i++) {
+            if (elementList[i].checked)
+                myLibrary[i].read = "true";
+            else
+                myLibrary[i].read = "false";
+        }
+    }
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
 render();
+setInterval(changeState, 500);
