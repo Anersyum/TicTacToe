@@ -1,5 +1,11 @@
 const fields = document.querySelectorAll("button");
 const manager = gameManager();
+document.querySelector("#reset").addEventListener("click", reloadPage);
+
+
+function reloadPage() {
+    window.location.reload();
+}
 
 function addEventListenerToButtons() {
     fields.forEach(field => {
@@ -89,6 +95,8 @@ function checkWinningCondition(player) {
 
 function disableAllFields() {
     fields.forEach(field => {
+        if (field.id === "reset")
+            continue; 
         field.disabled = true;
     })
 }

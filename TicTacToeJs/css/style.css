@@ -1,7 +1,3 @@
-img {
-    margin: 10% 0px 0px 35%;
-}
-
 button {
     width: 100px;
     height: 100px;
@@ -11,8 +7,29 @@ button {
     font-size: 60pt;
 }
 
+div {
+    position: absolute;
+    margin: 6% 0px 0px 44%;
+    font-size: 20pt;
+    text-align: center;
+}
+
+#reset {
+    width: 100px;
+    height: 40px;
+    background-color: burlywood;
+    font-size: 10pt;
+}
+#reset:hover {
+    background-color: aquamarine;
+}
+
+#reset:active {
+    background-color: azure;
+}
+
 .field {
-    margin: 11% 0px 0px 35.5%;
+    margin: 11% 0px 0px 36.5%;
 }
 
 .field1 {
@@ -20,29 +37,43 @@ button {
 }
 
 .field2 {
-    margin: 11% 0px 0px 56%;
+    margin: 11% 0px 0px 55%;
 }
 
 .field3 {
-    margin: 21.4% 0px 0px 35.5%;
+    margin: 20.3% 0px 0px 36.5%;
 }
 
 .field4 {
-    margin: 21.4% 0px 0px 46%;
+    margin: 20.3% 0px 0px 46%;
+    border-bottom: 3px solid black; 
+    border-top: 3px solid black; 
 }
 
 .field5 {
-    margin: 21.4% 0px 0px 56%;
+    margin: 20.3% 0px 0px 55%;
 }
 
 .field6 {
-    margin: 31.5% 0px 0px 35.5%;
+    margin: 29% 0px 0px 36.5%;
+    border-right: 3px solid black; 
 }
 
 .field7 {
-    margin: 31.5% 0px 0px 46%;
+    margin: 29% 0px 0px 46%;
 }
 
 .field8 {
-    margin: 31.5% 0px 0px 56%;
+    margin: 29% 0px 0px 55%;
+    border-left: 3px solid black; 
+}
+
+.field, .field3 {
+    border-right: 3px solid black;
+    border-bottom: 3px solid black; 
+}
+
+.field2, .field5 {
+    border-left: 3px solid black;
+    border-bottom: 3px solid black; 
 }
