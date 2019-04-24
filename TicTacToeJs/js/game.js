@@ -2,7 +2,6 @@ const fields = document.querySelectorAll("button");
 const manager = gameManager();
 document.querySelector("#reset").addEventListener("click", reloadPage);
 
-
 function reloadPage() {
     window.location.reload();
 }
@@ -23,14 +22,13 @@ function gameManager() {
     return {changeTurn, getTurn};
 }
 
-function player(symbol, name) {
+function player(symbol) {
     const getPlayerSymbol = () => symbol;
-    const getPlayerName = () => name;
-    return {getPlayerSymbol, getPlayerName};
+    return {getPlayerSymbol};
 }
 function changeState() {
-    const player1 = player("X", "Amor");
-    const player2 = player("O", "Štahor");
+    const player1 = player("X");
+    const player2 = player("O");
     const playerOnTurn = (manager.getTurn() === 0) ? player1 : player2;
     
     if (this.textContent === "") {
@@ -38,7 +36,7 @@ function changeState() {
     }
     manager.changeTurn();
     if (checkWinningCondition(playerOnTurn)){
-        document.querySelector("div").textContent = `${playerOnTurn.getPlayerName()} wins!`;
+        document.querySelector("div").textContent = `${playerOnTurn.getPlayerSymbol()} wins!`;
         disableAllFields();
     }
 }
