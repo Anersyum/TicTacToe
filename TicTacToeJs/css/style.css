@@ -1,9 +1,9 @@
 button {
     width: 10%;
-    height: 18.1%;
-    position: fixed;
+    height: 25%;
+    position: absolute;
     border: none;
-    font-size: 60pt;
+    font-size: 300%;
     background-color: transparent;
 }
 
