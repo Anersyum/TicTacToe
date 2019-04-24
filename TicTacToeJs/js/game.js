@@ -19,23 +19,29 @@ function gameManager() {
     }
     const getTurn = () => turn;
 
-    return {changeTurn, getTurn};
+    return {
+        changeTurn,
+        getTurn
+    };
 }
 
 function player(symbol) {
     const getPlayerSymbol = () => symbol;
-    return {getPlayerSymbol};
+    return {
+        getPlayerSymbol
+    };
 }
+
 function changeState() {
     const player1 = player("X");
     const player2 = player("O");
     const playerOnTurn = (manager.getTurn() === 0) ? player1 : player2;
-    
+
     if (this.textContent === "") {
         this.textContent = playerOnTurn.getPlayerSymbol();
+        manager.changeTurn();
     }
-    manager.changeTurn();
-    if (checkWinningCondition(playerOnTurn)){
+    if (checkWinningCondition(playerOnTurn)) {
         document.querySelector("div").textContent = `${playerOnTurn.getPlayerSymbol()} wins!`;
         disableAllFields();
     }
@@ -53,7 +59,7 @@ function checkWinningCondition(player) {
         }
         if (counter === 3)
             return true;
-        else 
+        else
             counter = 0;
     }
 
@@ -66,7 +72,7 @@ function checkWinningCondition(player) {
         }
         if (counter === 3)
             return true;
-        else 
+        else
             counter = 0;
     }
 
@@ -87,15 +93,15 @@ function checkWinningCondition(player) {
     }
     if (counter === 3)
         return true;
-    
+
     return false;
 }
 
 function disableAllFields() {
     fields.forEach(field => {
-        if (field.id === "reset")
-            continue; 
-        field.disabled = true;
+        if (field.id != "reset")
+            field.disabled = true;
+        console.log(field);
     })
 }
 addEventListenerToButtons();
