@@ -1,0 +1,48 @@
+img {
+    margin: 10% 0px 0px 35%;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    font-size: 60pt;
+}
+
+.field {
+    margin: 11% 0px 0px 35.5%;
+}
+
+.field1 {
+    margin: 11% 0px 0px 46%;
+}
+
+.field2 {
+    margin: 11% 0px 0px 56%;
+}
+
+.field3 {
+    margin: 21.4% 0px 0px 35.5%;
+}
+
+.field4 {
+    margin: 21.4% 0px 0px 46%;
+}
+
+.field5 {
+    margin: 21.4% 0px 0px 56%;
+}
+
+.field6 {
+    margin: 31.5% 0px 0px 35.5%;
+}
+
+.field7 {
+    margin: 31.5% 0px 0px 46%;
+}
+
+.field8 {
+    margin: 31.5% 0px 0px 56%;
+}
