@@ -33,6 +33,7 @@ function changeState() {
     manager.changeTurn();
     if (checkWinningCondition(playerOnTurn)){
         document.querySelector("div").textContent = `${playerOnTurn.getPlayerName()} wins!`;
+        disableAllFields();
     }
 }
 
@@ -86,4 +87,9 @@ function checkWinningCondition(player) {
     return false;
 }
 
+function disableAllFields() {
+    fields.forEach(field => {
+        field.disabled = true;
+    })
+}
 addEventListenerToButtons();
