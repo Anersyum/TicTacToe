@@ -1,10 +1,11 @@
 button {
     width: 9.5%;
-    height: 20%;
-    position: absolute;
-    border: none;
+    height: 90px;
+    /* position: absolute; */
+    border: 3px solid black;
     font-size: 300%;
     background-color: transparent;
+    margin-left: 0px;
 }
 
 div {
@@ -19,6 +20,7 @@ div {
     height: 40px;
     background-color: burlywood;
     font-size: 10pt;
+    border: none;
 }
 #reset:hover {
     background-color: aquamarine;
@@ -29,57 +31,19 @@ div {
 }
 
 .field {
-    margin: 11% 0px 0px 36.5%;
-}
-
-.field1 {
-    margin: 11% 0px 0px 46%;
-    border-bottom: 3px solid black; 
-}
-
-.field2 {
-    margin: 11% 0px 0px 55%;
+    margin: 10% 0px 0px 35%;
 }
 
 .field3 {
-    margin: 20.3% 0px 0px 36.5%;
-}
-
-.field4 {
-    margin: 20.3% 0px 0px 46%;
-    border-bottom: 3px solid black; 
-    /* border-top: 3px solid black;  */
-}
-
-.field5 {
-    margin: 20.3% 0px 0px 55%;
+    margin-left: 35%;
 }
 
 .field6 {
-    margin: 29% 0px 0px 36.5%;
-    border-right: 3px solid black; 
+    margin-left: 35%;
 }
 
-.field7 {
-    margin: 29% 0px 0px 46%;
-}
 
-.field8 {
-    margin: 29% 0px 0px 55%;
-    border-left: 3px solid black; 
-}
-
-.field, .field3 {
-    border-right: 3px solid black;
-    border-bottom: 3px solid black; 
-}
-
-.field2, .field5 {
-    border-left: 3px solid black;
-    border-bottom: 3px solid black; 
-}
-
-@media only screen and (max-height: 609px), (max-width: 1048px) {
+/* @media only screen and (max-height: 609px), (max-width: 1048px) {
     button {
         height: 15%;
     }
@@ -107,4 +71,4 @@ div {
     button {
         height: 37%;
     }
-}
+} */
