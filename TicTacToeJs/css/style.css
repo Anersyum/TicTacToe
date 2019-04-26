@@ -1,6 +1,6 @@
 button {
-    width: 10%;
-    height: 25%;
+    width: 9.5%;
+    height: 20%;
     position: absolute;
     border: none;
     font-size: 300%;
@@ -77,4 +77,34 @@ div {
 .field2, .field5 {
     border-left: 3px solid black;
     border-bottom: 3px solid black; 
+}
+
+@media only screen and (max-height: 609px), (max-width: 1048px) {
+    button {
+        height: 15%;
+    }
+}
+
+@media only screen and (max-height: 486px) {
+    button {
+        height: 18%;
+    }
+}
+
+@media only screen and (max-height: 486px) {
+    button {
+        height: 20%;
+    }
+}
+
+@media only screen and (max-height: 364px) {
+    button {
+        height: 24%;
+    }
+}
+
+@media only screen and (max-height: 299px) {
+    button {
+        height: 37%;
+    }
 }
