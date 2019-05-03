@@ -28,7 +28,8 @@ div {
 #reset {
     width: 100px;
     height: 40px;
-    background-color: burlywood;
+    background-color: darkred;
+    box-shadow: 4px 3px 10px 0px red;
     font-size: 10pt;
     border: none;
 }
