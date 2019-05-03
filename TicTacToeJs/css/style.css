@@ -1,8 +1,11 @@
+body {
+    background-color: #191919;
+}
 button {
-    width: 9.5%;
-    height: 90px;
-    /* position: absolute; */
-    border: 3px solid black;
+    width: 20%;
+    height: 30%;
+    color: white;
+    border: 3px solid darkred;
     font-size: 300%;
     background-color: transparent;
     margin-left: 0px;
@@ -13,6 +16,13 @@ div {
     margin: 6% 0px 0px 44%;
     font-size: 20pt;
     text-align: center;
+}
+
+.gameField {
+    /* border: 2px solid red; */
+    width: 50%;
+    height: 50%;
+    margin: 10% 0px 0px 20%;
 }
 
 #reset {
@@ -29,46 +39,3 @@ div {
 #reset:active {
     background-color: azure;
 }
-
-.field {
-    margin: 10% 0px 0px 35%;
-}
-
-.field3 {
-    margin-left: 35%;
-}
-
-.field6 {
-    margin-left: 35%;
-}
-
-
-/* @media only screen and (max-height: 609px), (max-width: 1048px) {
-    button {
-        height: 15%;
-    }
-}
-
-@media only screen and (max-height: 486px) {
-    button {
-        height: 18%;
-    }
-}
-
-@media only screen and (max-height: 486px) {
-    button {
-        height: 20%;
-    }
-}
-
-@media only screen and (max-height: 364px) {
-    button {
-        height: 24%;
-    }
-}
-
-@media only screen and (max-height: 299px) {
-    button {
-        height: 37%;
-    }
-} */
