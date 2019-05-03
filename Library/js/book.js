@@ -2,7 +2,7 @@ let docTable = document.querySelector("#books");
 let index = 0;
 let myLibrary = localStorage.getItem("myLibrary") ? JSON.parse(localStorage.getItem("myLibrary")) : [];
 let id = (myLibrary.length === 0) ? 0 : myLibrary.length;
-
+//TODO: change index going backwards when not entering an ID to remove book
 window.onbeforeunload = () => {
     changeState();
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
