@@ -18,6 +18,14 @@ div {
     text-align: center;
 }
 
+.legend {
+    position: absolute;
+    color: white;
+    margin: 5% 0px 0px 1%;
+    font-size: 16pt;
+    white-space: pre-line;
+}
+
 .gameField {
     width: 50%;
     height: 50%;

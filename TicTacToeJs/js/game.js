@@ -1,6 +1,7 @@
 const fields = document.querySelectorAll("button");
 const manager = gameManager();
 document.querySelector("#reset").addEventListener("click", reloadPage);
+document.querySelector(".legend").textContent = "Legend:\nX - player 1\nO - player 2\n _ - empty field";
 
 function reloadPage() {
     window.location.reload();
