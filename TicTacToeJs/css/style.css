@@ -6,12 +6,12 @@ button {
     height: 30%;
     color: white;
     border: 3px solid darkred;
-    font-size: 300%;
+    font-size: 20pt;
     background-color: transparent;
-    margin-left: 0px;
 }
 
 div {
+    color: white;
     position: absolute;
     margin: 6% 0px 0px 44%;
     font-size: 20pt;
@@ -19,10 +19,10 @@ div {
 }
 
 .gameField {
-    /* border: 2px solid red; */
     width: 50%;
     height: 50%;
-    margin: 10% 0px 0px 20%;
+    margin: 10% 0px 0px 30%;
+    text-align: left;
 }
 
 #reset {

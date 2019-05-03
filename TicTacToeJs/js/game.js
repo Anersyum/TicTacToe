@@ -37,7 +37,7 @@ function changeState() {
     const player2 = player("O");
     const playerOnTurn = (manager.getTurn() === 0) ? player1 : player2;
 
-    if (this.textContent === "") {
+    if (this.textContent === "_") {
         this.textContent = playerOnTurn.getPlayerSymbol();
         manager.changeTurn();
     }
