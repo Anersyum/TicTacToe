@@ -1,8 +1,29 @@
 function aiPlayTurn() {
 
-    let randomPosition = Math.floor(Math.random() * 10);
     const fields = document.querySelectorAll("button");
-    const ai = player("O");
+    const aiPlayer = player("O");
+
+    // ai winning pattern algorithm
+    aiWiningMove(aiPlayer);
+    
+    if (checkWinningCondition(aiPlayer)) {
+
+        document.querySelector(".winningMessage").textContent = `${aiPlayer.getPlayerSymbol()} wins!`;
+        disableAllFields();
+       
+        return;
+    }
+
+    // ai plays turn when there is no winning pattern
+    playRandomTurn(fields);
+   
+    playerTurn.changeTurn();
+}
+
+
+function playRandomTurn(fields) {
+
+    let randomPosition = Math.floor(Math.random() * 10);
 
     while (fields[randomPosition].textContent != "_" && playerTurn.getTurnNumber() != 9) {
 
@@ -12,16 +33,116 @@ function aiPlayTurn() {
     fields[randomPosition].textContent = "O";
 
     playerTurn.increaseTurnNumber();
-    
-    if (checkWinningCondition(ai)) {
+}
 
-        document.querySelector(".winningMessage").textContent = `${ai.getPlayerSymbol()} wins!`;
-        disableAllFields();
-       
-        return;
+function aiWiningMove(player) {
+
+    let counter = 0;
+    let index;
+
+    // horizontal matching
+    for (let i = 2; i < fields.length; i += 3) {
+
+        for (let j = i - 2; j <= i; j++) {
+            
+            if (fields[j].textContent == "_") {
+
+                index = j;
+            }
+
+            if (fields[j].textContent == player.getPlayerSymbol()) {
+
+                counter++;
+            }
+                
+        }
+
+        if (counter == 2) {
+
+            fields[index].textContent = player.getPlayerSymbol();
+
+            return;
+        }
+        else {
+
+            counter = 0;
+        }
     }
 
-    playerTurn.changeTurn();
+    // vertical matching
+    for (let i = 0; i < 3; i++) {
+
+        for (let j = i; j <= (fields.length + i - 2); j += 3) {
+            
+            if (fields[j].textContent == "_") {
+
+                index = j;
+            }
+
+            if (fields[j].textContent == player.getPlayerSymbol()) {
+
+                counter++;
+            }
+                
+        }
+
+        if (counter == 2) {
+
+            fields[index].textContent = player.getPlayerSymbol();
+
+            return;
+        }
+        else {
+
+            counter = 0;
+        }
+    }
+
+    // left diagonal matching
+    for (let i = 0; i < fields.length; i += 4) {
+
+        if (fields[i].textContent == "_") {
+
+            index = i;
+        }
+
+        if (fields[i].textContent == player.getPlayerSymbol()) {
+
+            counter++;
+        }
+            
+    }
+
+    if (counter == 2) {
+
+        fields[index].textContent = player.getPlayerSymbol();
+
+        return;
+    }
+    else {
+
+        counter = 0;
+    }
+
+    // right diagonal matching
+    for (let i = 2; i < fields.length - 1; i += 2) {
+
+        if (fields[i].textContent == "_") {
+
+                index = i;
+            }
+
+            if (fields[i].textContent == player.getPlayerSymbol()) {
+
+                counter++;
+            }
+                
+        }
+
+        if (counter == 2) {
+
+            fields[index].textContent = player.getPlayerSymbol();
+        }
 }
 
 export {aiPlayTurn};

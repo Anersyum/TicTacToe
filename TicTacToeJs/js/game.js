@@ -83,7 +83,7 @@ function changeState() {
     }
 
     // ai turn if ai is selected
-    if (difficulty == "easy") {
+    if (difficulty == "ai") {
 
         ai();
     }
