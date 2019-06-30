@@ -4,7 +4,7 @@ function aiPlayTurn() {
     const aiPlayer = player("O");
 
     // ai winning pattern algorithm
-    aiWiningMove(aiPlayer);
+    aiWiningMove(aiPlayer, fields);
     
     if (checkWinningCondition(aiPlayer)) {
 
@@ -35,7 +35,7 @@ function playRandomTurn(fields) {
     playerTurn.increaseTurnNumber();
 }
 
-function aiWiningMove(player) {
+function aiWiningMove(player, fields) {
 
     let counter = 0;
     let index;
@@ -56,7 +56,7 @@ function aiWiningMove(player) {
             }
                 
         }
-
+        console.log("Horizontal counter ", counter);
         if (counter == 2) {
 
             fields[index].textContent = player.getPlayerSymbol();
@@ -85,7 +85,7 @@ function aiWiningMove(player) {
             }
                 
         }
-
+        console.log("Vertical counter ", counter);
         if (counter == 2) {
 
             fields[index].textContent = player.getPlayerSymbol();
@@ -112,7 +112,7 @@ function aiWiningMove(player) {
         }
             
     }
-
+    console.log("Left counter ", counter);
     if (counter == 2) {
 
         fields[index].textContent = player.getPlayerSymbol();
@@ -143,6 +143,8 @@ function aiWiningMove(player) {
 
             fields[index].textContent = player.getPlayerSymbol();
         }
+
+        console.log("Right counter ", counter);
 }
 
 export {aiPlayTurn};
