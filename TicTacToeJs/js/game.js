@@ -1,5 +1,14 @@
+async function ai() {
+
+    let aiEasy = await import("./easyAI.js");
+
+    aiEasy.aiPlayTurn();
+}
+
 const fields = document.querySelectorAll("button");
+const inputTags = document.querySelectorAll("input");
 const playerTurn = turn();
+let difficulty;
 
 document.querySelector("#reset").addEventListener("click", reloadPage);
 document.querySelector(".legend").textContent = "Legend:\nX - player 1\nO - player 2\n _ - empty field";
@@ -12,7 +21,9 @@ function reloadPage() {
 function addEventListenerToButtons() {
 
     fields.forEach(field => {
-        field.addEventListener("click", changeState);
+        
+        if (field.value != "reset")
+            field.addEventListener("click", changeState);
     })
 }
 
@@ -54,25 +65,39 @@ function changeState() {
     const player2 = player("O");
     const playerOnTurn = (playerTurn.getTurn() === 0) ? player1 : player2;
 
+    // player turn
     if (this.textContent === "_") {
 
         this.textContent = playerOnTurn.getPlayerSymbol();
         playerTurn.changeTurn();
     }
 
+    playerTurn.increaseTurnNumber();
+
     if (checkWinningCondition(playerOnTurn)) {
 
         document.querySelector(".winningMessage").textContent = `${playerOnTurn.getPlayerSymbol()} wins!`;
         disableAllFields();
+       
+        return;
     }
 
-    playerTurn.increaseTurnNumber();
+    // ai turn if ai is selected
+    if (difficulty == "easy") {
 
+        ai();
+    }
+
+    // draw condition
     if (playerTurn.getTurnNumber() == 9) {
 
         document.querySelector(".winningMessage").textContent = "Draw!";
         disableAllFields();
+        
+        return;
     }
+
+
 }
 
 function checkWinningCondition(player) {
@@ -146,6 +171,14 @@ function enableAllFields() {
         if (field.id != "reset") {
             field.disabled = false;
         }
+    })
+
+    inputTags.forEach(tag => {
+
+        if (tag.checked == true && tag.disabled != true) 
+            difficulty = tag.value;
+
+        tag.disabled = true;
     })
 }
 
