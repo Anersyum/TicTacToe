@@ -41,13 +41,14 @@ function aiWiningMove(player, fields) {
     let index;
 
     // horizontal matching
-    for (let i = 2; i < fields.length; i += 3) {
+    for (let i = 2; i < 9; i += 3) {
 
         for (let j = i - 2; j <= i; j++) {
             
             if (fields[j].textContent == "_") {
 
                 index = j;
+                continue;
             }
 
             if (fields[j].textContent == player.getPlayerSymbol()) {
@@ -56,27 +57,29 @@ function aiWiningMove(player, fields) {
             }
                 
         }
-        console.log("Horizontal counter ", counter);
-        if (counter == 2) {
 
+        if (counter == 2 && index !== null && typeof(index) != "undefined") {
+            
             fields[index].textContent = player.getPlayerSymbol();
-
+            
             return;
         }
         else {
 
             counter = 0;
+            index = null;
         }
     }
 
     // vertical matching
     for (let i = 0; i < 3; i++) {
 
-        for (let j = i; j <= (fields.length + i - 2); j += 3) {
+        for (let j = i; j < 9; j += 3) {
             
             if (fields[j].textContent == "_") {
 
                 index = j;
+                continue;
             }
 
             if (fields[j].textContent == player.getPlayerSymbol()) {
@@ -85,8 +88,8 @@ function aiWiningMove(player, fields) {
             }
                 
         }
-        console.log("Vertical counter ", counter);
-        if (counter == 2) {
+
+        if (counter == 2 && index !== null && typeof(index) != "undefined") {
 
             fields[index].textContent = player.getPlayerSymbol();
 
@@ -95,15 +98,17 @@ function aiWiningMove(player, fields) {
         else {
 
             counter = 0;
+            index = null;
         }
     }
 
     // left diagonal matching
-    for (let i = 0; i < fields.length; i += 4) {
+    for (let i = 0; i < 9; i += 4) {
 
         if (fields[i].textContent == "_") {
 
             index = i;
+            continue;
         }
 
         if (fields[i].textContent == player.getPlayerSymbol()) {
@@ -112,8 +117,8 @@ function aiWiningMove(player, fields) {
         }
             
     }
-    console.log("Left counter ", counter);
-    if (counter == 2) {
+
+    if (counter == 2 && index !== null && typeof(index) != "undefined") {
 
         fields[index].textContent = player.getPlayerSymbol();
 
@@ -122,14 +127,16 @@ function aiWiningMove(player, fields) {
     else {
 
         counter = 0;
+        index = null;
     }
 
     // right diagonal matching
-    for (let i = 2; i < fields.length - 1; i += 2) {
+    for (let i = 2; i < 7; i += 2) {
 
         if (fields[i].textContent == "_") {
 
                 index = i;
+                continue;
             }
 
             if (fields[i].textContent == player.getPlayerSymbol()) {
@@ -139,12 +146,10 @@ function aiWiningMove(player, fields) {
                 
         }
 
-        if (counter == 2) {
+        if (counter == 2 && index !== null && typeof(index) != "undefined") {
 
             fields[index].textContent = player.getPlayerSymbol();
         }
-
-        console.log("Right counter ", counter);
 }
 
 export {aiPlayTurn};

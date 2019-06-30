@@ -22,6 +22,12 @@ div {
     text-align: center;
 }
 
+.opponentName {
+
+    margin-top: 10px;
+    margin-left: 37%;
+}
+
 .opponent {
 
     margin: 220px 0% 0% 1%;

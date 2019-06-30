@@ -1,14 +1,14 @@
 async function ai() {
 
-    let aiEasy = await import("./easyAI.js");
+    let aiOpponent = await import("./easyAI.js");
 
-    aiEasy.aiPlayTurn();
+    aiOpponent.aiPlayTurn();
 }
 
 const fields = document.querySelectorAll("button");
 const inputTags = document.querySelectorAll("input");
 const playerTurn = turn();
-let difficulty;
+let opponent;
 
 document.querySelector("#reset").addEventListener("click", reloadPage);
 document.querySelector(".legend").textContent = "Legend:\nX - player 1\nO - player 2\n _ - empty field";
@@ -21,7 +21,7 @@ function reloadPage() {
 function addEventListenerToButtons() {
 
     fields.forEach(field => {
-        
+
         if (field.value != "reset")
             field.addEventListener("click", changeState);
     })
@@ -69,23 +69,16 @@ function changeState() {
     if (this.textContent === "_") {
 
         this.textContent = playerOnTurn.getPlayerSymbol();
+        playerTurn.increaseTurnNumber();
         playerTurn.changeTurn();
     }
-
-    playerTurn.increaseTurnNumber();
 
     if (checkWinningCondition(playerOnTurn)) {
 
         document.querySelector(".winningMessage").textContent = `${playerOnTurn.getPlayerSymbol()} wins!`;
         disableAllFields();
-       
+
         return;
-    }
-
-    // ai turn if ai is selected
-    if (difficulty == "ai") {
-
-        ai();
     }
 
     // draw condition
@@ -93,11 +86,15 @@ function changeState() {
 
         document.querySelector(".winningMessage").textContent = "Draw!";
         disableAllFields();
-        
+
         return;
     }
 
+    // ai turn if ai is selected
+    if (opponent == "ai" && playerTurn.getTurn() == 1) {
 
+        ai();
+    }
 }
 
 function checkWinningCondition(player) {
@@ -175,11 +172,15 @@ function enableAllFields() {
 
     inputTags.forEach(tag => {
 
-        if (tag.checked == true && tag.disabled != true) 
-            difficulty = tag.value;
+        if (tag.checked == true && tag.disabled != true)
+            opponent = tag.value;
 
         tag.disabled = true;
     })
+
+    const versusText = "Playing against ";
+    document.querySelector(".opponentName").textContent = versusText
+        + ((opponent == "ai") ? "Computer" : "Player");
 }
 
 disableAllFields();
