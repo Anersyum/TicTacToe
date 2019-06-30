@@ -1,7 +1,10 @@
 body {
+
     background-color: #191919;
 }
+
 button {
+
     width: 20%;
     height: 30%;
     color: white;
@@ -11,6 +14,7 @@ button {
 }
 
 div {
+
     color: white;
     position: absolute;
     margin: 6% 0px 0px 44%;
@@ -18,7 +22,14 @@ div {
     text-align: center;
 }
 
+.difficulty {
+
+    margin: 12% 0% 0% 1%;
+    text-align: left;
+}
+
 .legend {
+
     position: absolute;
     color: white;
     margin: 5% 0px 0px 1%;
@@ -27,6 +38,7 @@ div {
 }
 
 .gameField {
+
     width: 50%;
     height: 50%;
     margin: 10% 0px 0px 30%;
@@ -34,6 +46,7 @@ div {
 }
 
 #reset {
+
     width: 100px;
     height: 40px;
     background-color: darkred;
@@ -42,9 +55,11 @@ div {
     border: none;
 }
 #reset:hover {
-    background-color: aquamarine;
+
+    background-color: #a10000;
 }
 
 #reset:active {
-    background-color: azure;
+    
+    background-color: #c30000;
 }

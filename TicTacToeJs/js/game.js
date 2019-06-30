@@ -1,58 +1,87 @@
 const fields = document.querySelectorAll("button");
-const manager = gameManager();
+const playerTurn = turn();
+
 document.querySelector("#reset").addEventListener("click", reloadPage);
 document.querySelector(".legend").textContent = "Legend:\nX - player 1\nO - player 2\n _ - empty field";
 
 function reloadPage() {
+
     window.location.reload();
 }
 
 function addEventListenerToButtons() {
+
     fields.forEach(field => {
         field.addEventListener("click", changeState);
     })
 }
 
-function gameManager() {
-    let turn = 0;
+function turn() {
+
+    let playerTurn = 0;
+    let turnNumber = 0;
+
     const changeTurn = () => {
-        turn = (turn === 0) ? 1 : 0;
+        playerTurn = (playerTurn === 0) ? 1 : 0;
     }
-    const getTurn = () => turn;
+
+    const getTurn = () => playerTurn;
+
+    const increaseTurnNumber = () => turnNumber++;
+
+    const getTurnNumber = () => turnNumber;
 
     return {
         changeTurn,
-        getTurn
+        getTurn,
+        increaseTurnNumber,
+        getTurnNumber
     };
 }
 
 function player(symbol) {
+
     const getPlayerSymbol = () => symbol;
+
     return {
         getPlayerSymbol
     };
 }
 
 function changeState() {
+
     const player1 = player("X");
     const player2 = player("O");
-    const playerOnTurn = (manager.getTurn() === 0) ? player1 : player2;
+    const playerOnTurn = (playerTurn.getTurn() === 0) ? player1 : player2;
 
     if (this.textContent === "_") {
+
         this.textContent = playerOnTurn.getPlayerSymbol();
-        manager.changeTurn();
+        playerTurn.changeTurn();
     }
+
     if (checkWinningCondition(playerOnTurn)) {
-        document.querySelector("div").textContent = `${playerOnTurn.getPlayerSymbol()} wins!`;
+
+        document.querySelector(".winningMessage").textContent = `${playerOnTurn.getPlayerSymbol()} wins!`;
+        disableAllFields();
+    }
+
+    playerTurn.increaseTurnNumber();
+
+    if (playerTurn.getTurnNumber() == 9) {
+
+        document.querySelector(".winningMessage").textContent = "Draw!";
         disableAllFields();
     }
 }
 
 function checkWinningCondition(player) {
+
     let counter = 0;
 
     // horizontal matching
     for (let i = 2; i < fields.length; i += 3) {
+
         for (let j = i - 2; j <= i; j++) {
             if (fields[j].textContent != player.getPlayerSymbol())
                 break;
@@ -85,6 +114,8 @@ function checkWinningCondition(player) {
     }
     if (counter === 3)
         return true;
+    else
+        counter = 0;
 
     // right diagonal matching
     for (let i = 2; i < fields.length - 1; i += 2) {
@@ -99,10 +130,24 @@ function checkWinningCondition(player) {
 }
 
 function disableAllFields() {
+
     fields.forEach(field => {
-        if (field.id != "reset")
+
+        if (field.id != "reset") {
             field.disabled = true;
-        console.log(field);
+        }
     })
 }
+
+function enableAllFields() {
+
+    fields.forEach(field => {
+
+        if (field.id != "reset") {
+            field.disabled = false;
+        }
+    })
+}
+
+disableAllFields();
 addEventListenerToButtons();
